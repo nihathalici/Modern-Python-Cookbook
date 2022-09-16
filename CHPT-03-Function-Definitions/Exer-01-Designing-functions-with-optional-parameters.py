@@ -30,3 +30,20 @@ print(dice(6))
 
 def dice(n=2):
     return tuple(die() for x in range(n))
+
+###
+
+def dice(n):
+    return (die() for x in range(n))
+
+def craps():
+    return dice(2)
+
+def zonk():
+    return dice(6)
+
+def die(sides=6):
+    return random.randint(1, 6)
+
+def dice(n=2, sides=6):
+    return tuple(die(sides) for x in range(n))
