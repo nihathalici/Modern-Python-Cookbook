@@ -15,3 +15,21 @@ def wind_chill(start_T, stop_T, step_T, start_V, stop_V, step_V, path):
         for V in range(start_V, stop_V, step_V):
             row = [V] + [Twc(T, V) for T in range(start_T, stop_T, step_T)]
             writer.writerow(row)
+
+wind_chill(start_T=0, stop_T=-45, step_T=-5, start_V=0, stop_V=20, step_V=2, path=p)
+
+import sys
+
+def wind_chill(*, start_T, stop_T, step_T, start_V, stop_V, step_V, output=sys.stdout):
+    pass
+
+wind_chill(
+    start_T=0, stop_T=-45, step_T=-5, 
+    start_V=0, stop_V=20, step_V=2)
+
+path = pathlib.Path('code/wc.csv')
+with path.open('w', newsline='') as target:
+    wind_chill(output=target,
+         start_T=0, stop_T=-45, step_T=-5, 
+         start_V=0, stop_V=20, step_V=2)
+
