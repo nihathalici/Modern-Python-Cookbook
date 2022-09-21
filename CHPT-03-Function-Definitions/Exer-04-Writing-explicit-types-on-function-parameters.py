@@ -7,4 +7,35 @@ def temperature(*, f_temp=None, c_temp=None):
         return {'f_temp': 32+9*c_temp/5, 'c_temp': c_temp}
     else:
         raise Exception("Logic Design Problem")
+
+###
+
+def temperature(*, f_temp=None, c_temp=None):
+    """Convert between Fahrenheit temperature and
+    Celsius temperature.
     
+    :key f_temp: Temperature in °F.
+    :key c_temp: Temperature in °C.
+    :returns: dictionary with two keys:
+        :f_temp: Temperature in °F.
+        :c_temp: Temperature in °C.
+    """
+
+from typing import *
+
+from decimal import Decimal
+from typing import *
+Number = Union[int, float, complex, Decimal]
+
+###
+
+def temperature(*,
+    f_temp: Optional[Number]=None,
+    c_temp: Optional[Number]=None):
+
+###
+
+def temperature(*,
+    f_temp: Optional[Number]=None,
+    c_temp: Optional[Number]=None) -> Dict[str, Number]:
+
