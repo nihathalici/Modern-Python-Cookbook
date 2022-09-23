@@ -55,4 +55,11 @@ def temperature_bad(*,
     result = {'c_temp': c_temp, 'f_temp': f_temp}
     return result
 
+a = {(1, 2, 3): ['Poe', 'E'],
+     (3, 4, 5): ['Near', 'a', 'Raven'],}
 
+Dict[Tuple[int, int, int], List[str]]
+
+Color = Tuple[int, int, int]
+Line = List[str]
+Dict[Color, Line]
