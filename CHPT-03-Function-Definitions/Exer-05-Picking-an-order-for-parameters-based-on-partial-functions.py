@@ -23,4 +23,18 @@ def haversine(lat_1: float, lon_1: float,
 
     return R * c
 
+###
 
+def haversine(lat_1: float, lon_1: float,
+    lat_2: float, lon_2: float, *, R: float) -> float:
+
+def nm_haversine(*args):
+    return haversine(*args, R=NM)
+
+def haversine(lat_1: float, lon_1: float,
+    lat_2: float, lon_2: float, *, R: float) -> float:
+
+from functools import partial
+nm_haversine = partial(haversine, R=NM)
+
+round(nm_haversine(36.12, -86.67, 33.94, -118.40), 2)
