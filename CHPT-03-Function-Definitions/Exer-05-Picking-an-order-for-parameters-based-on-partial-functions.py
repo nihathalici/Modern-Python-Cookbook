@@ -38,3 +38,15 @@ from functools import partial
 nm_haversine = partial(haversine, R=NM)
 
 round(nm_haversine(36.12, -86.67, 33.94, -118.40), 2)
+
+###
+
+def haversine(R: float, lat_1: float, lon_1: float,
+    lat_2: float, lon_2: float ) -> float:
+
+from functools import partial
+nm_haversine = partial(haversine, NM)
+
+round(nm_haversine(36.12, -86.67, 33.94, -118.40), 2)
+
+nm_haversine = lambda *args: haversine(*args, R=NM)
