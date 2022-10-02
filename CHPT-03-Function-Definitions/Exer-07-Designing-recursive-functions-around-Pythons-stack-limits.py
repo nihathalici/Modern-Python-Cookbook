@@ -29,3 +29,45 @@ p = n
 while n != 1:
     n = n - 1
     p *= n
+
+###
+
+def fibo(n):
+    if n <= 1:
+        return 1
+    else:
+        return fibo(n-1)+fibo(n-2)
+
+###
+
+from functools import lru_cache
+from re import A
+
+@lru_cache(128)
+def fibo(n):
+    if n <= 1:
+        return 1
+    else:
+        return fibo(n-1) + fibo(n-2)
+
+###
+
+def fibo_iter():
+    a = 1
+    b = 1
+    yield a 
+    while True:
+        yield b
+        a, b = b, a+b
+
+###
+
+def fibo(n):
+    """ 
+    >>> fibo(7)
+    21
+    """
+    for i, f_i in enumerate(fibo_iter()):
+        if i == n: break 
+    return f_i
+
