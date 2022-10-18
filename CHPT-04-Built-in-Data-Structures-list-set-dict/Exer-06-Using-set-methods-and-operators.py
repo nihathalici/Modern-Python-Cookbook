@@ -36,3 +36,32 @@ def coupon_collector(n, data):
             yield count
             count, collection = 0, set()
 
+
+from statistics import mean
+
+expected_time = float(expected(n))
+data = samples(100, arrival1())
+wait_times = list(coupon_collector(n, data))
+average_time = mean(wait_times)
+
+###
+
+collection = set()
+collection.add(1)
+print(collection)
+
+collection.add(1)
+collection
+1 in collection
+item = 3
+collection.union({item})
+
+###
+
+collection = collection | {item}
+collection
+
+###
+
+collection.update( {4} )
+collection
