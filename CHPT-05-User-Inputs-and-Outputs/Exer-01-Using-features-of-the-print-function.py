@@ -44,5 +44,21 @@ for leg in fuel_use:
     print('off', leg['engine off'], sep='=', end=', ')
     print('change', start-finish, sep="=")
 
+###
+
+import sys
+
+def print(*args, *, sep=None, end=None, file=sys.stdout):
+    if sep is None: sep = ' '
+    if end is None: end = '\n'
+    arg_iter = iter(args)
+    first = next(arg_iter)
+    sys.stdout.write(repr(first))
+    for value in arg_iter:
+        sys.stdout.write(sep)
+        sys.stdout.write(repr(value()))
+    sys.stdout.write(end)
+
+
 
     
