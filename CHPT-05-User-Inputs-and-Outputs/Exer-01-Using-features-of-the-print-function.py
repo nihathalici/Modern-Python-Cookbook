@@ -59,6 +59,20 @@ def print(*args, *, sep=None, end=None, file=sys.stdout):
         sys.stdout.write(repr(value()))
     sys.stdout.write(end)
 
+###
+
+import sys
+print("Red Alert!", file=sys.stderr)
+
+###
+
+# python3 myapp.py <input.dat >output.dat
+
+from pathlib import Path
+target_path = Path('somefile.dat')
+with target_path.open('w', encoding='utf-8') as target_file:
+    print("Some output", file=target_file)
+    print("Ordinary log")
 
 
     
