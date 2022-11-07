@@ -50,3 +50,12 @@ if month == 12:
 else:
     next_year, next_month = year, month+1
 day_end_date = date(next_year, next_month, 1)
+
+###
+
+import subprocess
+# for macOS
+status = subprocess.check_output(['ps', PID])
+# for Windows 
+status = subprocess.check_output(['tasklist', '/fi', '"PID eq {PID}"'.format(PID=PID)])
+
