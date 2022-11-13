@@ -23,3 +23,41 @@ def wheel():
         roulette_bin(i) for i in range(1, 37)
     ]
     return b0+b00+b1_36
+
+###
+import cmd
+
+class Roulette(cmd.Cmd):
+    def preloop(self):
+        self.bets = {}
+        self.stake = 100
+        self.wheel = wheel()
+    def do_bet(self, arg_string):
+        if arg_string not in BET_NAMES:
+            print("{0} is not a valid bet".format(arg_string))
+            return
+        # Happy path: more goes here.
+        self.bets[arg_string] = 1
+    def do_spin(self, arg_string):
+        if len(self.bets) == 0:
+            print("No bets have been placed")
+        return 
+    # Happy path: more goes here.
+    BET_NAMES = set(['even', 'odd', 'high', 'low', 'red', 'black'])
+
+self.spin = random.choice(self.wheel)
+print("Spin", self.spin)
+label, winners = self.spin
+for b in self.bets:
+    if b in winners:
+        self.stake += self.bets[b]
+        print("Win", b)
+    else:
+        self.stake -= self.bets[b]
+        print("Lose", b)
+self.bets = {}
+
+if __name__ == "__main__":
+    r = Roulette()
+    r.cmdloop()
+
