@@ -61,3 +61,7 @@ if __name__ == "__main__":
     r = Roulette()
     r.cmdloop()
 
+###
+
+class Roulette(cmd.Cmd):
+    prompt="Roulette> "
