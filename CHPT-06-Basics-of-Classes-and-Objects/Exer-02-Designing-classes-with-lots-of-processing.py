@@ -47,7 +47,38 @@ stats = CounterStatistics(data)
 print("Mean: {0:.2f}".format(stats.mean))
 print("Standard Deviation: {0:.3f}".format(stats.stddev))
 
+###
 
+def add(self, value):
+    self.raw_counter[value] += 1
+    self.mean = self.compute_mean()
+    self.stddev = self.compute_stddev()
 
+def __init__(self, counter:Counter=None):
+    if counter:
+        self.raw_counter = counter
+        self.count = sum(self.raw_counter[k] for k in self.raw_counter)
+        self.sum = sum(self.raw_counter[k]*k for k in self.raw_counter)
+        self.sum2 = sum(self.raw_counter[k]*k**2 for k in self.raw_counter)
+        self.mean = self.sum/self.count
+        self.stddev = math.sqrt((self.sum2 - self.sum**2/self.count) / (self.count - 1))
+    else:
+        self.raw_counter = Counter()
+        self.count = 0
+        self.sum = 0
+        self.sum2 = 0
+        self.mean = None
+        self.stddev = None
 
+###
+
+def add(self, value):
+    self.raw_counter[value] += 1
+    self.count += 1
+    self.sum += value
+    self.sum += value**2
+    self.mean = self.sum/self.count
+    if self.count > 1:
+        self.stddev = math.sqrt(
+            (self.sum2 - self.sum**2 / self.count)/(self.count-1))
 
