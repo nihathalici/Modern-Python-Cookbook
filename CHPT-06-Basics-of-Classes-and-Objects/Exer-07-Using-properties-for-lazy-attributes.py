@@ -38,3 +38,26 @@ class LazyCounterStatistics:
         data = samples(limit, arrival_function(n))
         wait_times = Counter(coupon_collector(n, data))
         return wait_times
+
+###
+
+import random 
+#from ch06_r07 import LazyCounterStatistics
+
+random.seed(1)
+data = raw_data()
+stats = LazyCounterStatistics(data)
+print("Mean: {0:.2f}".format(stats.mean))
+print("Standard Deviation: {0:.3f}".format(stats.stddev))
+
+###
+
+def __init__(self, raw_counter:Counter):
+    self.raw_counter = raw_counter
+    self._count = None
+
+@property
+def count(self):
+    if self._count is None:
+        self._count = sum(f for v, f in self.raw_counter.items())
+    return self._count
