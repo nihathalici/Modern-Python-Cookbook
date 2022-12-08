@@ -35,9 +35,20 @@ class Leg:
         self._distance = value
         self._calculate('distance')
 
+###
+
+from collections import deque
+
+# self._changes = deque(maxlen=2)
+
+def _calculate(self, change):
+    if change not in self._changes:
+        self._changes.append(change)
+    compute = {'rate', 'time', 'distance'} - set(self._changes)
+    if compute == {'distance'}:
+        self._distance = self._time * self._rate
+    elif compute == {'time'}:
+        self._time = self._distance / self._rate
+    elif compute == {'rate'}:
+        self._rate = self._distance / self._time
     
-
-
-
-
-
