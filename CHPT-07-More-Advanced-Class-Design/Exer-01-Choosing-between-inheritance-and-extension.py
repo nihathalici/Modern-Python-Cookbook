@@ -33,4 +33,13 @@ random.seed(1)
 d.shuffle()
 [d.deal() for _ in range(5)]
 
+###
 
+def some_method(self):
+    # do something extra
+    super().some_method()
+
+###
+
+c_2s = Card(2, Spades)
+another = c_2s
