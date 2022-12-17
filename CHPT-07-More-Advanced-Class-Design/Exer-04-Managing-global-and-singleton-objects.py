@@ -1,0 +1,1 @@
+# Managing global and singleton objects
