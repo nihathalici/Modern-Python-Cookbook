@@ -64,3 +64,29 @@ def make_deck():
     return [make_card(r, s) for _ in range(2)
         for r in range(9, 15)
         for s in SUITS]
+
+c1 <= c2
+c1.__le__(c2)
+
+from ch07_r06a import make_deck
+
+deck = make_deck()
+len(deck)
+
+###
+
+import random
+random.seed(4)
+random.shuffle(deck)
+sorted(deck[:12])
+
+c1 = make_card(9, '♡')
+c1 == 9
+
+###
+
+def __lt__(self, other):
+    if isinstance(other, Card):
+        return (self.rank, self.suit) < (other.rank, other.suit)
+    else:
+        return self.rank < other
