@@ -49,3 +49,12 @@ pinochle = Hand([make_card(11, "♢"), make_card(12, "♠")])
 pinochle <= h
 
 sum(c.points() for c in h)
+
+###
+
+while lo < hi:
+    mid = (lo + hi) // 2
+    if x < a[mid]:
+        hi = mid
+    else:
+        lo = mid + 1
