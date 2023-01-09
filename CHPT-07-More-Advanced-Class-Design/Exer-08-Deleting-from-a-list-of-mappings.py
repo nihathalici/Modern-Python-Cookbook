@@ -43,3 +43,20 @@ position = index(data)
 while position:
     del data[position]  # or data.pop(position)
     position = index(data)
+
+if "Lake" in data[i]["writer"]:
+    del data[i]
+else:
+    i += 1
+
+###
+
+i = 0
+
+while i != len(data):
+    if "Lake" in data[i]["writer"]:
+        del data[i]
+    else:
+        i += 1
+
+pprint(data)
