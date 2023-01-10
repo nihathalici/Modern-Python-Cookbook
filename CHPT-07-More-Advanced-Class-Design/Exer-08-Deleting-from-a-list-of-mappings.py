@@ -19,15 +19,15 @@ for item in data:
 
 ###
 
-data = source.copy()
-for index in range(len(data)):
-    if "Lake" in data[index]["writer"]:
-        del data[index]  # IndexError: list index out of range
+# data = source.copy()
+# for index in range(len(data)):
+#    if "Lake" in data[index]["writer"]:
+#        del data[index]  # IndexError: list index out of range
 
 ###
 
-while x in list:
-    list.remove(x)
+# while x in list:
+#    list.remove(x)
 
 ###
 
@@ -44,6 +44,8 @@ while position:
     del data[position]  # or data.pop(position)
     position = index(data)
 
+i = 0
+
 if "Lake" in data[i]["writer"]:
     del data[i]
 else:
@@ -59,4 +61,25 @@ while i != len(data):
     else:
         i += 1
 
+pprint(data)
+
+###
+
+data = [item for item in source if not ("Lake" in item["writer"])]
+
+###
+
+data = list(filter(lambda item: not ("Lake" in item["writer"]), source))
+
+###
+
+
+def writer_rule(iterable):
+    for item in iterable:
+        if "Lake" in item["writer"]:
+            continue
+        yield item
+
+
+data = list(writer_rule(source))
 pprint(data)
