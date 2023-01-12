@@ -12,3 +12,22 @@ data = [
 ]
 
 ###
+
+import datetime
+
+
+def parse_date_iter(source):
+    for item in source:
+        date = datetime.datetime.strptime(item[0], "%Y-%m-%d %H:%M:%S,%f")
+        new_item = (date,) + item[1:]
+        yield new_item
+
+
+###
+
+from pprint import pprint
+
+# for item in parse_date_iter(data):
+#    pprint(item)
+
+print(parse_date_iter(data))
