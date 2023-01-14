@@ -31,3 +31,32 @@ from pprint import pprint
 #    pprint(item)
 
 print(parse_date_iter(data))
+
+###
+
+"""
+for i in some_collection:
+    process(i)
+"""
+"""
+the_iterator = iter(some_collection)
+try:
+    while True:
+        i = next(the_iterator)
+        process(i)
+except StopIteration:
+    pass
+"""
+
+
+def gen_func():
+    print("pre-yield")
+    yield 1
+    print("post-yield")
+    yield 2
+
+
+y = gen_func()
+next(y)
+next(y)
+next(y)  # StopIteration
