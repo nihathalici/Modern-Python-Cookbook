@@ -60,3 +60,30 @@ y = gen_func()
 next(y)
 next(y)
 next(y)  # StopIteration
+
+###
+
+
+def primeset(source):
+    for i in source:
+        if prime(i):
+            yield prime
+
+
+p_10 = set(primeset(range(2, 2000000)))
+
+p_10 = {i for i in range(2, 2000000) if prime(i)}
+
+
+def map(m, S):
+    for s in S:
+        yield m(s)
+
+
+def filter(f, S):
+    for s in S:
+        if f(s):
+            yield s
+
+
+p_10 = set(filter(prime, range(2, 2000000)))
