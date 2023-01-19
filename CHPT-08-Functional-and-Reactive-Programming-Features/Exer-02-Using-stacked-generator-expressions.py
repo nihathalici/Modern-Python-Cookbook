@@ -77,3 +77,44 @@ def date_conversion(source):
     end_gen = (end_datetime(row) for row in start_gen)
     duration_gen = (duration(row) for row in end_gen)
     return duration_gen
+
+
+###
+
+for row in date_conversion(row_merge(data)):
+    print(row[11])
+
+for row in fuel_use(date_conversion(row_merge(data))):
+    print(row[11])
+
+###
+
+from types import SimpleNamespace
+
+
+def make_namespace(merge_iter):
+    for row in merge_iter:
+        ns = SimpleNamespace(
+            date=row[0],
+            start_time=row[1],
+            start_fuel_height=row[2],
+            end_time=row[4],
+            end_fuel_height=row[5],
+            other_notes=row[7],
+        )
+        yield ns
+
+
+def duration(row_ns):
+    travel_time = row_ns.end_timestamp - row_ns.start_timestamp
+    travel_hours = round(travel_time.total_seconds() / 60 / 60, 1)
+    return SimpleNamespace(**vars(row_ns), travel_hours=travel_hours)
+
+
+###
+
+
+def duration(row_ns):
+    travel_time = row_ns.end_timestamp - row_ns.start_timestamp
+    row_ns.travel_hours = round(travel_time.total_seconds() / 60 / 60, 1)
+    return row_ns
