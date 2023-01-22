@@ -49,3 +49,20 @@ for item in source:
     new_item = transformation(item)
     yield new_item
 """
+
+
+def parse_date(item):
+    date = datetime.datetime.strptime(item[0], "%Y-%m-%d %H:%M:%S, %f")
+    new_item = (date,) + item[1:]
+    return new_item
+
+
+"""
+for item in collection:
+    new_item = parse_date(item)
+    yield new_item
+"""
+(parse_date(item) for item in data)
+
+for row in map(parse_date, data):
+    print(row[0], row[3])
