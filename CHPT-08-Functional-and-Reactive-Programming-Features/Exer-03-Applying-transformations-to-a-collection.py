@@ -66,3 +66,28 @@ for item in collection:
 
 for row in map(parse_date, data):
     print(row[0], row[3])
+
+
+def map(f, iterable):
+    return (f(item) for item in iterable)
+
+
+def mul(a, b):
+    return a * b
+
+
+list_1 = [2, 3, 5, 7]
+list_2 = [11, 13, 17, 23]
+
+list(map(mul, list_1, list_2))
+
+###
+
+
+def bundle(*args):
+    return args
+
+
+list(map(bundle, list_1, list_2))
+
+list(zip(list_1, list_2))
