@@ -48,3 +48,30 @@ def row_merge(source_iter):
 
 
 pprint(list(row_merge(log_rows)))
+
+###
+
+
+def pass_non_date(row):
+    return row[0] != "date"
+
+
+###
+"""
+for item collection:
+    if pass_non_date(item):
+        yield item
+"""
+
+###
+
+(item for item in data if pass_non_date(item))
+
+###
+
+filter(pass_non_date, data)
+
+###
+
+for row in filter(pass_non_date, row_merge(data)):
+    print(row[0], row[1], row[4])
