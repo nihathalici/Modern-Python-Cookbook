@@ -75,3 +75,44 @@ filter(pass_non_date, data)
 
 for row in filter(pass_non_date, row_merge(data)):
     print(row[0], row[1], row[4])
+
+###
+
+
+def filter(f, iterable):
+    for item in iterable:
+        if f(item):
+            yield f(item)
+
+
+def filter(f, iterable):
+    return (item for item in iterable if f(item))
+
+
+def reject_date(row):
+    return row[0] == "date"
+
+
+for item in collection:
+    if reject_date(item):
+        continue
+    yield item
+
+###
+
+for item in collection:
+    if not reject_date(item):
+        yield item
+
+###
+
+(item for item in data if not reject_date(item))
+
+
+def pass_date(row):
+    return not reject_date(row)
+
+
+###
+
+filter(lambda item: not reject_date(item), data)
