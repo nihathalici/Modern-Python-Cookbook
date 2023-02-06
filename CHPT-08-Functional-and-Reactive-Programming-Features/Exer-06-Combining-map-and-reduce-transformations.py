@@ -35,3 +35,56 @@ def make_namespace(row):
         other_notes=row[7],
     )
     return ns
+
+
+###
+
+
+def remove_date(row_ns):
+    return not (row_ns.date == "date")
+
+
+###
+
+import datetime
+
+
+def timestamp(date_text, time_text):
+    date = datetime.datetime.strptime(date_text, "%m/%d/%y").date()
+    time = datetime.datetime.strptime(time_text, "%I:%M:%S %p").time()
+    timestamp = datetime.datetime.combine(date, time)
+    return timestamp
+
+
+###
+
+
+def start_datetime(row_ns):
+    row_ns.start_timestamp = timestamp(row_ns.date, row_ns.start_time)
+    return row_ns
+
+
+def end_datetime(row_ns):
+    row_ns.end_timestamp = timestamp(row_ns.date, row_ns.end_time)
+    return row_ns
+
+
+def duration(row_ns):
+    travel_time = row_ns.end_timestamp - row_ns.start_timestamp
+    row_ns.travel_hours = round(travel_time.total_seconds() / 60 / 60, 1)
+    return row_ns
+
+
+###
+
+
+def fuel_use(row_ns):
+    end_height = float(row_ns.end_fuel_height)
+    start_height = float(row_ns.start_fuel_height)
+    row_ns.fuel_change = start_height - end_height
+    return row_ns
+
+
+def fuel_per_hour(row_ns):
+    row_ns.fuel_per_hour = row_ns.fuel_change / row_ns.travel_hours
+    return row_ns
