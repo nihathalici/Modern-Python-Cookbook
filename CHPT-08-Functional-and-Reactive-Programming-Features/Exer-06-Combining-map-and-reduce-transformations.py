@@ -88,3 +88,32 @@ def fuel_use(row_ns):
 def fuel_per_hour(row_ns):
     row_ns.fuel_per_hour = row_ns.fuel_change / row_ns.travel_hours
     return row_ns
+
+###
+
+from statistics import *
+
+def avg_fuel_per_hour(iterable):
+    return mean(row.fuel_per_hour for row in iterable)
+
+def stdev_fuel_per_hour(iterable):
+    return stdev(row.fuel_per_hour for row in iterable)
+
+round(avg_fuel_per_hour(
+    clean_data(row_merge(log_rows))), 3)
+
+###
+
+data = tuple(clean_data(row_merge(log_rows)))
+m = avg_fuel_per_hour(data)
+s = 2*stdev_fuel_per_hour(data)
+print("Fuel use {m:.2f} ±{s:.2f}".format(m=m, s=s))
+
+###
+
+from itertools import tee 
+
+data1, data2 = tee(clean_data(row_merge(log_rows)), 2)
+m = avg_fuel_per_hour(data1)
+s = 2*stdev_fuel_per_hour(data2)
+
