@@ -19,3 +19,24 @@ def prime(n):
         range(2, int(math.sqrt(n) + 1)),
     )
     return len(list(factors)) == 0
+
+
+###
+
+from itertools import takewhile
+
+n = 13
+
+list(takewhile(lambda i: n % i != 0, range(2, 4)))
+
+n = 15
+
+list(takewhile(lambda i: n % i != 0, range(2, 4)))
+
+###
+
+
+def prime_t(n):
+    tests = set(range(2, int(math.sqrt(n) + 1)))
+    non_factors = set(takewhile(lambda i: n % i != 0, tests))
+    return tests == non_factors
