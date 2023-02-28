@@ -40,3 +40,11 @@ def prime_t(n):
     tests = set(range(2, int(math.sqrt(n) + 1)))
     non_factors = set(takewhile(lambda i: n % i != 0, tests))
     return tests == non_factors
+
+
+###
+
+"""
+from itertools import starmap
+map = starmap(function, zip(iter1, iter2))
+"""
